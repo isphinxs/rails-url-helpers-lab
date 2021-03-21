@@ -6,6 +6,16 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @student = Student.find_by(id: params[:id])
+  end
+
+  def activate
+    # byebug
+    student = Student.find_by(id: params[:id])
+    student.toggle_active_status
+    # student.save
+    # byebug
+    redirect_to student_path(student.id)
   end
 
   private
